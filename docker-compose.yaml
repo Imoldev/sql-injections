@@ -8,5 +8,26 @@ services:
       - "80:8080"
     volumes:
       - .:/app
-    command: "php -S 0.0.0.0:8080"  
+    command: "php -S 0.0.0.0:8080"
+
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: dbroot
+      MYSQL_DATABASE: student
+      MYSQL_USER: student
+      MYSQL_PASSWORD: student
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3000:8080
+
       
