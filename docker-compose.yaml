@@ -2,13 +2,19 @@ version: "3.9"
 
 services:
 
-  php-fpm:
-    build: ./docker
+  nginx:
+    image: nginx:1.25.3
     ports:
-      - "80:8080"
+      - "80:80"
     volumes:
-      - .:/app
-    command: "php -S 0.0.0.0:8080"
+      - ./docker/nginx/fastcgi_params:/etc/nginx/fastcgi_params
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./www:/var/www
+
+  php-fpm:
+    build: ./docker/php
+    volumes:
+      - ./www:/var/www
 
   db:
     image: mysql:8
@@ -24,10 +30,15 @@ services:
       MYSQL_USER: student
       MYSQL_PASSWORD: student
   
-  adminer:
-    image: adminer
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin
     restart: always
     ports:
-      - 3000:8080
+      - "3000:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: dbroot
 
       
