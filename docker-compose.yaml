@@ -40,5 +40,7 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: dbroot
+      PMA_USER: student
+      PMA_PASSWORD: student
 
       
