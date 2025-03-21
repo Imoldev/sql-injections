@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-$pdo = include __DIR__ . '/../app/pdo.php';
+$dbh = include __DIR__ . '/../app/pdo.php';
 
 $id = $_GET['id'];
 if (!$id instanceof Stringable) {
@@ -9,7 +9,7 @@ if (!$id instanceof Stringable) {
 }
 
 
-$stmt = $pdo->query("SELECT * FROM comments WHERE author_id = $id");
+$stmt = $dbh->query("SELECT * FROM comments WHERE author_id = $id");
 $comments = [];
 if ($stmt !== false) {
     $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -14,4 +14,9 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <!--
+    <plugins>
+        <plugin filename="psalm-rules/NoPdoQueryRule.php"/>
+    </plugins>
+    -->
 </psalm>

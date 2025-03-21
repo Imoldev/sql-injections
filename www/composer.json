@@ -5,6 +5,7 @@
         "vimeo/psalm": "^6.8"
     },
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-mysqli": "*"
   }
 }
